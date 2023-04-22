@@ -1,0 +1,106 @@
+<main id="main" class="main">
+    <div class="pagetitle">
+       <h1>Data Tables</h1>
+       <nav>
+          <ol class="breadcrumb">
+             <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
+             <li class="breadcrumb-item">Tables</li>
+             <li class="breadcrumb-item active">Data</li>
+          </ol>
+       </nav>
+    </div>
+
+    
+
+
+
+
+
+    <section class="section">
+       <div  class="row">
+          <div class="col-lg-12">
+             <div class="card">
+                <div class="card-body">
+                  
+                
+                   <h5 class="card-title">Request details</h5>
+                   <div  class="row">
+                      <div class="col-lg-3 col-md-4 label ">Name</div>
+                      <div class="col-lg-9 col-md-8">{{demandes?.user.username}}</div>
+                   </div>
+                   <div class="row">
+                    <div class="col-lg-3 col-md-4 label ">Surname</div>
+                    <div class="col-lg-9 col-md-8">{{demandes?.user.prenom}}</div>
+                 </div>
+                   <div class="row">
+                      <div class="col-lg-3 col-md-4 label">Department</div>
+                      <div class="col-lg-9 col-md-8">{{demandes?.user.departement}}</div>
+                   </div>
+                   <div  class="row">
+                      <div class="col-lg-3 col-md-4 label">Asset allocation date</div>
+                      <div class="col-lg-9 col-md-8">{{demandes?.date}}</div>
+                   </div>
+                   <div class="row">
+                      <div class="col-lg-3 col-md-4 label">Allocation motive</div>
+                      <div class="col-lg-9 col-md-8">{{demandes?.allocation_motive}}</div>
+                   </div>
+                   <p>The Following asset :</p>
+                   <div class="card-body">
+                  
+                    <table class="table table-hover">
+                       <thead>
+                          <tr>
+                             
+                             <th scope="col">Equipment
+                               </th>
+                             <th scope="col">MODEl
+                               </th>
+                             <th scope="col">SERVICE TAG / SERIAL
+                                NUMBER (S/N)</th>
+                             <th scope="col">Comments</th>
+                          </tr>
+                       </thead>
+                       <tbody>
+                         
+                          <tr>
+                             
+                             <td>{{demandes?.materiel.equipement}}</td>
+                             <td>{{demandes?.materiel.model}}</td>
+                             <td>{{demandes?.materiel.serial}}</td>
+                             <td>{{demandes?.materiel.comment}}</td>
+                          </tr>
+                          
+                          
+                       </tbody>
+                    </table>
+                  </div>
+                  <div class="modal-footer">  <button type="button"  class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#verticalycentered"> En cours</button> <button (click)="updatestatus()" type="button" class="btn btn-primary"> Close</button></div>
+                  
+                  <div class="modal fade" id="verticalycentered" tabindex="-1">
+                     <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                           <div class="modal-header">
+                              <h5 class="modal-title">Confirmation</h5>
+                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                           </div>
+                           <div class="modal-body"> are you sure to confirm request</div>
+                           <div class="modal-footer"> <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> <button type="button" (click)="updateProvider()" class="btn btn-primary">OK</button></div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+                </div>
+             </div>
+          </div>
+       
+    </section>
+
+
+
+
+
+
+
+
+    
+ </main>
