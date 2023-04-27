@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HelpdeskserviceService } from 'src/app/helpdeskservice.service';
@@ -13,10 +13,12 @@ import { TokenStorageService } from 'src/app/_services/token-storage-service';
 })
 export class RequestHandoverComponent implements OnInit {
     demandes:any;
-    materiels: Materiel[]=[];
+  
+   /*materiel: Materiel[]=[];*/
+   demande: Demande[]=[];
     employe:any;
     dynamicArray :any= [];
-  
+  dng:any={materiel:[]}
     isLoggedIn = false;
     showAdminBoard = false;
     showModeratorBoard = false;
@@ -24,6 +26,14 @@ export class RequestHandoverComponent implements OnInit {
     id?: any;
     prenom?: any;
     departement?: any;
+
+
+
+    materiel: any = [
+      { equipement: "", model: "",serial:"",comment:"" }
+      
+    ]
+    
   constructor(private service: HelpdeskserviceService, private router: Router,private route: ActivatedRoute,private tokenStorageService: TokenStorageService) { }
 
   ngOnInit(): void {
@@ -55,34 +65,55 @@ export class RequestHandoverComponent implements OnInit {
     
       
   }
+  @ViewChild("f")
+  from!: NgForm;
+  onSubmit(f: NgForm) {
+    let materiel = Object.keys(f.value).map(item => {
+      return f.value[item];
+    });
+    console.log(materiel);
+    // Object.keys because the new indexes are string
+  }
   addRow() {
-    this.dynamicArray.push({ Equipment : '', lastName: '', emailAddress: '' });
+    this.dynamicArray.push({ Equipment: '', MODEl : '', SERVICETAG: '' ,Comments:''});
     console.log('New row added successfully', 'New Row');
   }
-  getAdminFormData(data:any){
+  pushNewTag() {
+    this.materiel.push({
+      equipement: "", model: "",serial:"",comment:""
+    })
+  }
+ /* getAdminFormData(data:any){
    
     if (this.tokenStorageService.getToken()) {
       this.isLoggedIn = true;
       const user = this.tokenStorageService.getUser();
-    
-      data.status="En cours";
-       data.equipement="clav";
-       data.model="asus";
-       data.serial="000";
-       data.comment ="ok";
-       console.warn(data);
+     
+    /*data.materiel=[]*/
+     /*data.materiel=[{equipement:"c.u", "model": "assus",
+     "serial": "1475",
+     "comment": "ok"},{"equipement": "C.U",
+     "model": "hpp",
+     "serial": "422",
+     "comment": "ok"}];*/
+     
+       /*console.warn(JSON.stringify(data));*/
+      /* console.warn([data.materiel].concat(data));*/
+     
+     /* console.warn(data);
+      
    
    this.service.saveDemande(data).subscribe((result)=>{
          console.warn(result);
        })
-    }
+    }*/
    
    /* this.service.saveMateriel(data).subscribe((result)=>{
     
       console.warn(result);
     })*/
     
-  }
+  //}
   /*getAdminFormDat(data:any){
     const user = this.tokenStorageService.getUser();
     data.id=user.id;

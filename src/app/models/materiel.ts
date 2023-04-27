@@ -1,4 +1,6 @@
 export class Materiel {
-    username!:string;
-    prenom!:string;
-    departement!:string;}
+    equipement!:string;
+    model!:string;
+    serial!:string;
+    comment!:string;
+}

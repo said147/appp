@@ -10,6 +10,7 @@ import { HelpdeskserviceService } from 'src/app/helpdeskservice.service';
 export class EditHandoverComponent implements OnInit {
   id:any;
   demandes:any;
+  providerToUpdate:any
   constructor(private service: HelpdeskserviceService, private router: Router,private route: ActivatedRoute) { }
 
   ngOnInit(): void {
@@ -31,7 +32,21 @@ export class EditHandoverComponent implements OnInit {
         );
   }
   updateProvider(){
+    this.providerToUpdate = {
+     
+      status: 'Canceled'
+      
+      }
     
+      console.log(this.providerToUpdate)
+      
+     this.service.updateProvider(this.id, this.providerToUpdate).subscribe(
+      response => {
+      
+      console.log(response);
+      
+      }
+      );
   }
 
 }

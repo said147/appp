@@ -62,19 +62,19 @@
                        </thead>
                        <tbody>
                          
-                          <tr>
+                          <tr *ngFor="let n of Materiel  ">
                              
-                             <td>{{demandes?.materiel.equipement}}</td>
-                             <td>{{demandes?.materiel.model}}</td>
-                             <td>{{demandes?.materiel.serial}}</td>
-                             <td>{{demandes?.materiel.comment}}</td>
+                             <td>{{n?.equipement}}</td>
+                             <td>{{n?.model}}</td>
+                             <td>{{n?.serial}}</td>
+                             <td>{{n?.comment}}</td>
                           </tr>
                           
                           
                        </tbody>
                     </table>
                   </div>
-                  <div class="modal-footer">  <button type="button"  class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#verticalycentered"> En cours</button> <button (click)="updatestatus()" type="button" class="btn btn-primary"> Close</button></div>
+                  <div class="modal-footer">  <button [disabled]="demandes.status == 'En cours'||demandes?.status=='Closed'"  type="button"  class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#verticalycentered"> En cours</button> <button [disabled]="demandes.status == 'Waiting'||demandes.status=='Closed'"  type="button" class="btn btn-primary"data-bs-toggle="modal" data-bs-target="#verticalycentereds"> Close</button></div>
                   
                   <div class="modal fade" id="verticalycentered" tabindex="-1">
                      <div class="modal-dialog modal-dialog-centered">
@@ -84,7 +84,19 @@
                               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                            </div>
                            <div class="modal-body"> are you sure to confirm request</div>
-                           <div class="modal-footer"> <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> <button type="button" (click)="updateProvider()" class="btn btn-primary">OK</button></div>
+                           <div class="modal-footer"> <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button> <button type="button" (click)="updateProvider()" class="btn btn-primary">Yes</button></div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="modal fade" id="verticalycentereds" tabindex="-1">
+                     <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                           <div class="modal-header">
+                              <h5 class="modal-title">Closing</h5>
+                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                           </div>
+                           <div class="modal-body"> are you sure to close request</div>
+                           <div class="modal-footer"> <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button> <button type="button" (click)="updatestatus()" class="btn btn-primary">Yes</button></div>
                         </div>
                      </div>
                   </div>

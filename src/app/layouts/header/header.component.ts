@@ -31,6 +31,7 @@ export class HeaderComponent implements OnInit {
       this.prenom=user.prenom;
       console.log(user);
     }
+    
     console.log(this.prenom);
   }
   sidebarToggle()

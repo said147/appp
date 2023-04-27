@@ -33,7 +33,8 @@ export class DetailsComponent implements OnInit {
       this.service.getProvider(this.id).subscribe(
         response => {
         this.demandes= response;
-      
+         console.log(this.demandes.status);
+         
         }
         );
       
@@ -43,7 +44,15 @@ export class DetailsComponent implements OnInit {
           
           }
           );*/
+          this.service.getMateriel(this.id).subscribe(
+            response => {
+            this.Materiel= response;
+             
+             console.log(this.Materiel);
+            }
+            );
   }
+  
 
   updateProvider() {
  

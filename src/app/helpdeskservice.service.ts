@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { User } from './models/user';
+import { TokenStorageService } from './_services/token-storage-service';
 
 @Injectable({
   providedIn: 'root'
@@ -15,18 +16,47 @@ export class HelpdeskserviceService {
   urlPr="http://localhost:8082/addClien";
   urlRep="http://localhost:8082/demandes/"
   urlreque="http://localhost:8082/demandeww";
-  httpOptions = {
+ /* httpOptions = {
     headers: new HttpHeaders({'Content-Type': 'application/json'})
-};
-  constructor(private Http: HttpClient) { }
+};*/
+currentUser:any;
+isLoggedIn:any;
+
+  constructor(private Http: HttpClient,private token: TokenStorageService) { 
+    this.currentUser = this.token.getUser();
+    console.log(this.currentUser.prenom)
+    console.log(this.currentUser.roles)
+    console.log(this.currentUser.accessToken)
+    this.isLoggedIn = !!this.token.getToken();
+
+    if (this.isLoggedIn) {
+      const user = this.token.getUser();
+    
+
+    
+      console.log(user);
+    }
+  }
   
-  
+   httpOptions =
+    { headers: new HttpHeaders().set('Authorization',`Bearer ${"eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzYWlkIiwiaWF0IjoxNjgyNTg5NzkxLCJleHAiOjE2ODI2NzYxOTF9.7u-Z9tGIRe26omBAbcLdrGsPK_GMu3wHNTofek-WJeFdMEYdAYT5tJb799cg4Vyh9iOYuIAs_BCOzU9zKx64Vg"}`)};
+   
   
   
   saveDemande(data:any) {
      
-    return this.Http.post(this.urlProduct,data);
+    return this.Http.post(this.urlProduct,data,this.httpOptions);
         }
+
+
+
+
+
+
+
+
+
+
         listProduct() {
           return this.Http.get(this.urlrequest);
                }
@@ -54,9 +84,13 @@ export class HelpdeskserviceService {
                getProvider(id_demande:any) {
                 return this.Http.get(this.urlrequests+id_demande,id_demande)
                    }
+                   getMateriel(id_demande:any){
+                   
+                    return this.Http.get(' http://localhost:8082/materiel/'+id_demande,id_demande)
+                   }
                  
                    updateProvider(id_demande:any,providerToUpdate:any) {
-                    return this.Http.patch('http://localhost:8082/contacts/'+id_demande,providerToUpdate);
+                    return this.Http.patch('http://localhost:8082/changeDemande/'+id_demande,providerToUpdate,this.httpOptions);
                        }
                        updateStatus(id_demande:any,providerToUpdate:any) {
                         return this.Http.patch('http://localhost:8082/changestatus/'+id_demande,providerToUpdate);
