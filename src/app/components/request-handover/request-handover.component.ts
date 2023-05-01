@@ -1,10 +1,12 @@
 import { Component, OnInit,ViewChild } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { FormBuilder, FormGroup, NgForm ,FormArray, FormControl, Validators} from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HelpdeskserviceService } from 'src/app/helpdeskservice.service';
-import { Demande } from 'src/app/models/demande';
+
 import { Materiel } from 'src/app/models/materiel';
 import { TokenStorageService } from 'src/app/_services/token-storage-service';
+import { Demande } from 'src/app/models/demande';
+import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-request-handover',
@@ -13,11 +15,11 @@ import { TokenStorageService } from 'src/app/_services/token-storage-service';
 })
 export class RequestHandoverComponent implements OnInit {
     demandes:any;
-  
-   /*materiel: Materiel[]=[];*/
+   demandesf =new Demande;
+  /*materiel: any=Materiel;*/
    demande: Demande[]=[];
     employe:any;
-    dynamicArray :any= [];
+    dynamicArray :any;
   dng:any={materiel:[]}
     isLoggedIn = false;
     showAdminBoard = false;
@@ -26,64 +28,92 @@ export class RequestHandoverComponent implements OnInit {
     id?: any;
     prenom?: any;
     departement?: any;
-
-
-
-    materiel: any = [
-      { equipement: "", model: "",serial:"",comment:"" }
-      
-    ]
+    bookForm: any
+    fooForm : FormGroup | undefined
+    foo : any
+    resData: any
+    isData : boolean = false;
+    dataform:any;
     
-  constructor(private service: HelpdeskserviceService, private router: Router,private route: ActivatedRoute,private tokenStorageService: TokenStorageService) { }
+
+   
+
+
+   
+ 
+  constructor(private builder: FormBuilder,private service: HelpdeskserviceService, private router: Router,private route: ActivatedRoute,private tokenStorageService: TokenStorageService) 
+  { 
+  
+  }
 
   ngOnInit(): void {
-    /*this.route.paramMap.subscribe(
-      params => {
-      this.employe.id_employer = params.get('id_employer'); 
-     console.log(this.employe.id_employer)
-      }
-      );
-    this.service.getProviders(this.id).subscribe(
-      response => {
-      this.employe= response;
-      }
-      );*/
+   
       this.isLoggedIn = !!this.tokenStorageService.getToken();
 
     if (this.isLoggedIn) {
       const user = this.tokenStorageService.getUser();
-    
-
-      
-
       this.username = user.username;
       this.id=user.id;
       this.prenom=user.prenom;
-      this.departement=user.departement;
-      
+      this.departement=user.departement; 
     }
+    console.log(this.demande) 
+   
+  }
+
+  formvariant !: FormArray<any>;
+  productform = this.builder.group({
+    date: this.builder.control('', Validators.required),
+    allocation_motive: this.builder.control('', Validators.required),
+   /*  price: this.builder.control('', Validators.required),
+    remarks: this.builder.control(''),
+    category: this.builder.control(''),*/
+    materiel: this.builder.array([])
+  });
+  addDemande(){
+    if (this.tokenStorageService.getToken()) {
+      this.isLoggedIn = true;
+      const user = this.tokenStorageService.getUser();
+   
+    console.log(this.productform.value);
     
-      
+   this.service.saveDemande(this.productform.value).subscribe((result)=>{
+    console.warn(result);
+  })
   }
-  @ViewChild("f")
-  from!: NgForm;
-  onSubmit(f: NgForm) {
-    let materiel = Object.keys(f.value).map(item => {
-      return f.value[item];
-    });
-    console.log(materiel);
-    // Object.keys because the new indexes are string
+
+
+
+
+
   }
+  
+
+
   addRow() {
-    this.dynamicArray.push({ Equipment: '', MODEl : '', SERVICETAG: '' ,Comments:''});
+    this.formvariant = this.productform.get("materiel") as FormArray;
+    this.formvariant.push(this.Generaterow());
+    /*this.demandesf.materiel.push( this.materiels);*/
     console.log('New row added successfully', 'New Row');
   }
-  pushNewTag() {
-    this.materiel.push({
-      equipement: "", model: "",serial:"",comment:""
-    })
+  Generaterow() {
+    return this.builder.group({
+    /*  id: this.builder.control({ value: 0, disabled: true }),
+      productCode: this.builder.control(this.productform.value.code),
+      price: this.builder.control(this.productform.value.price),
+      isactive: this.builder.control(true),*/
+      equipement: this.builder.control(''),
+      model: this.builder.control(''),
+      serial: this.builder.control(''),
+      comment: this.builder.control('')
+    });
   }
- /* getAdminFormData(data:any){
+
+  get materiels() {
+    return this.productform.get("materiel") as FormArray;
+  }
+
+  getAdminFormData(data:any){
    
     if (this.tokenStorageService.getToken()) {
       this.isLoggedIn = true;
@@ -105,8 +135,8 @@ export class RequestHandoverComponent implements OnInit {
    
    this.service.saveDemande(data).subscribe((result)=>{
          console.warn(result);
-       })
-    }*/
+       })*/
+    }
    
    /* this.service.saveMateriel(data).subscribe((result)=>{
     
@@ -121,7 +151,7 @@ export class RequestHandoverComponent implements OnInit {
    /* this.service.saveMateriel(data).subscribe((result)=>{
       console.warn(result);
     })*/
- /* }*/
+ }
 
  /*public isUser(){
   if(this.tokenStorageService.)

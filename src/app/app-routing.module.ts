@@ -37,6 +37,7 @@ import { RequestHandoverComponent } from './components/request-handover/request-
 import { RequestChangeComponent } from './components/request-change/request-change.component';
 
 import { EditHandoverComponent } from './components/edit-handover/edit-handover.component';
+import { ReactiveFormsModule } from '@angular/forms';
 const routes: Routes = [
   { path: '', component: PagesLoginComponent },
   
@@ -75,6 +76,6 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule,ReactiveFormsModule]
 })
 export class AppRoutingModule { }

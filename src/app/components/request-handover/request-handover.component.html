@@ -17,7 +17,7 @@
                    <div> <img style="width: 290px;position: relative;margin-left: 590px;" src="assets/img/Image2.png" alt=""></div>
                   <h5 style="text-align: center;font-family:Verdana;font-weight: 700;font-size: 24px;color: rgb(79,129,183);" class="card-title">Asset Handover Form</h5>
                   <p style="font-family: Arial;font-size: 13px;color: #000;">ATC company entrusts to Mr/Mrs, subsequently referred to as « employee »</p>
-                  <form #f="ngForm" (ngSubmit)="onSubmit(f)" >
+                  <form  [formGroup]="productform" (ngSubmit)="addDemande()">
                      <div class="row mb-3">
                         <label 
 
@@ -40,21 +40,21 @@
                     
                      <div class="row mb-3">
                         <label style="font-family: Arial;font-size: 13px;" for="inputDate" class="col-sm-2 col-form-label">Asset allocation date</label>
-                        <div class="col-sm-10"> <input style="font-family: Arial;font-size: 13px;" name="date"  ngModel type="date" class="form-control"></div>
+                        <div class="col-sm-10"> <input formControlName="date" style="font-family: Arial;font-size: 13px;" name="date"  type="date" class="form-control"></div>
                      </div>
                     
                     <fieldset class="row mb-3">
                        <legend   style="font-family: Arial;font-size: 13px;" class="col-form-label col-sm-2 pt-0">Allocation motive</legend>
-                       <div  type="date" class="col-sm-10">
-                          <div  class="form-check"> <input  ngModel class="form-check-input" type="radio" name="allocation_motive" id="gridRadios1" value="Integration" checked> <label style="font-family: Arial;font-size: 13px;" class="form-check-label" for="gridRadios1"> Integration </label></div>
-                          <div class="form-check"> <input ngModel class="form-check-input" type="radio" name="allocation_motive" id="gridRadios2" value="Additional allocation "> <label style="font-family: Arial;font-size: 13px;" class="form-check-label" for="gridRadios2"> Additional allocation </label></div>
+                       <div  type="radio" class="col-sm-10">
+                          <div  class="form-check"> <input formControlName="allocation_motive"  class="form-check-input" type="radio"  id="gridRadios1" value="Integration" checked> <label style="font-family: Arial;font-size: 13px;" class="form-check-label" for="gridRadios1"> Integration </label></div>
+                          <div class="form-check"> <input formControlName="allocation_motive" class="form-check-input" type="radio"  id="gridRadios2" value="Additional allocation "> <label style="font-family: Arial;font-size: 13px;" class="form-check-label" for="gridRadios2"> Additional allocation </label></div>
    
                        </div>
                     </fieldset>
               
                     <p style="font-family: Arial;font-size: 13px;color: #000;">The Following asset :</p>
 
-                    <table style=" border:1px solid rgb(230, 230, 230);border-radius: 15px;" class="table-bordered border-primary">
+                    <table  formArrayName="materiel" style=" border:1px solid rgb(230, 230, 230);border-radius: 15px;" class="table-bordered border-primary">
                        <thead  style="background-color:rgb(75,172,198);">
                          <tr style="background-color:rgb(75,172,198);">
                            <td style="font-family: Arial;font-size: 16px;color:rgb(255,255,255);font-weight: 700;text-align: center;"class="tdBorderEmail"><label>Equipment
@@ -71,11 +71,13 @@
                            
                          </tr>
                        </thead>
-                       <tbody  *ngFor="let x of materiel" >
-                           <tr >
+                      
+                       <tbody  >
+                        
+                           <tr  *ngFor="let item of materiels.controls;let i=index" [formGroupName]="i" >
                            
                                <td>
-                                   <select [(ngModel)]="x.equipement" name="equipement"  id="gridRadios1" value="option1" style="width:150px;height: 50px;font-family: Arial;font-size: 16px;" class="form-select" id="validationCustom04" >
+                                   <select  formControlName="equipement"    name="equipement"  id="gridRadios1" value="option1" style="width:150px;height: 50px;font-family: Arial;font-size: 16px;" class="form-select" id="validationCustom04" >
                                        <option style="font-family: Arial;font-size: 16px;"  value="">Choose...</option>
                                        <option   value="C.U"  for="gridRadios1"  style="font-family: Arial;font-size: 16px;">C.U</option>
                                        <option  value="Screen"  for="gridRadios1"   style="font-family: Arial;font-size: 16px;">Screen</option>
@@ -84,7 +86,7 @@
                                      </select>
                                </td>
                                <td>
-                                   <select [(ngModel)]="x.model" name="model" id="gridRadios2" value="option2" style="width: 150px;height: 50px;"class="form-select" id="validationCustom04" >
+                                   <select  formControlName="model" name="model" id="gridRadios2" value="option2" style="width: 150px;height: 50px;"class="form-select" id="validationCustom04" >
                                        <option  value="">Choose...</option>
                                        <option value="optiplex3040" for="gridRadios2">optiplex3040</option>
                                        <option>E2417</option>
@@ -92,47 +94,25 @@
                                        
                                      </select>
                                </td>
-                               <td for="gridRadios1"  style="width:50%;height: 50px;"><input [(ngModel)]="x.serial" name="serial" id="gridRadios1"  placeholder="SERVICE TAG" style="width:100%;height: 50px;" type="text"></td>
-                               <td style="width:50%;height: 50px;"><input [(ngModel)]="x.comment" name="comment" id="gridRadios1"  placeholder="Comments" style="width:100%;height: 50px;" type="text"></td>
+                               <td for="gridRadios1"  style="width:50%;height: 50px;"><input formControlName="serial"  name="serial" id="gridRadios1"  placeholder="SERVICE TAG" style="width:100%;height: 50px;" type="text"></td>
+                               <td style="width:50%;height: 50px;"><input formControlName="comment"  name="comment" id="gridRadios1"  placeholder="Comments" style="width:100%;height: 50px;" type="text"></td>
                              </tr>
                              <tr>
                               
                                
                              </tr>
-                         <tr *ngFor="let dynamic of materiel">
-                           
-                           <td>
-                               <select ngModel name="equipement"  id="gridRadios1" value="option1" style="width:150px;height: 50px;font-family: Arial;font-size: 16px;" class="form-select" id="validationCustom04" >
-                                   <option style="font-family: Arial;font-size: 16px;"  value="">Choose...</option>
-                                   <option   value="C.U"  for="gridRadios1"  style="font-family: Arial;font-size: 16px;">C.U</option>
-                                   <option  value="Screen"  for="gridRadios1"   style="font-family: Arial;font-size: 16px;">Screen</option>
-                                   <option  value="keyboard"  for="gridRadios1"  style="font-family: Arial;font-size: 16px;">keyboard</option>
-                                   <option  value="telephone"  for="gridRadios1"  style="font-family: Arial;font-size: 16px;">telephone</option>
-                                 </select>
-                           </td>
-                           <td>
-                               <select ngModel name="model" id="gridRadios2" value="option2" style="width: 150px;height: 50px;"class="form-select" id="validationCustom04" >
-                                   <option  value="">Choose...</option>
-                                   <option value="optiplex3040" for="gridRadios2">optiplex3040</option>
-                                   <option>E2417</option>
-                                   <option >Samsung</option>
-                                   
-                                 </select>
-                           </td>
-                           <td for="gridRadios1"  style="width:50%;height: 50px;"><input ngModel name="serial" id="gridRadios1"  placeholder="SERVICE TAG" style="width:100%;height: 50px;" type="text"></td>
-                           <td style="width:50%;height: 50px;"><input ngModel name="comment" id="gridRadios1"  placeholder="Comments" style="width:100%;height: 50px;" type="text"></td>
-                         </tr>
-                         <tr>
-                           
-                           
-                         </tr>
-                       
+                         
+                        
                        </tbody>
-                      
+                       
                      </table>
-                     <td>
-                       <div>  <button class="bi bi-plus" (click)="pushNewTag()"></button></div>
-                     </td>
+                     <tfoot>
+                        <tr>
+                            <td colspan="7">
+                                <a  class="bi bi-plus" (click)="addRow()" ></a>
+                            </td>
+                        </tr>
+                    </tfoot>
                     
                   
                     

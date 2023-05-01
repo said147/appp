@@ -9,7 +9,7 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './layouts/header/header.component';
 import { FooterComponent } from './layouts/footer/footer.component';
 import { SidebarComponent } from './layouts/sidebar/sidebar.component';
-
+import { ReactiveFormsModule } from '@angular/forms';
 
  
 
@@ -40,7 +40,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { RequestsComponent } from './components/requests/requests.component';
 import { ReponseHandoverComponent } from './components/reponse-handover/reponse-handover.component';
 import { RequestHandoverComponent } from './components/request-handover/request-handover.component';
-import { FormsModule } from '@angular/forms';
+import { FormBuilder, FormsModule } from '@angular/forms';
 import { RequestChangeComponent } from './components/request-change/request-change.component';
 import { EditHandoverComponent } from './components/edit-handover/edit-handover.component';
 import { Ng2SearchPipe } from 'ng2-search-filter';
@@ -87,10 +87,10 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     SearchPipe
   ],
   imports: [
-    BrowserModule,
-    AppRoutingModule,FormsModule,HttpClientModule, Ng2SearchPipeModule,NgxPaginationModule
+    BrowserModule,ReactiveFormsModule,
+    AppRoutingModule,FormsModule,HttpClientModule, Ng2SearchPipeModule,NgxPaginationModule,
   ],
-  providers: [],
+  providers: [FormBuilder],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

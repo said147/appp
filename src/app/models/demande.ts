@@ -2,8 +2,8 @@ import { Materiel } from "./materiel";
 
 export class Demande {
   
-    date!:Date
+    date!:Date;
     Allocation_motive!:string;
-    materiel:Array<Materiel>=[];
-    
+    materiel:Materiel[]=[];
+   
 }

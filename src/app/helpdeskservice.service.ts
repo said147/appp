@@ -39,7 +39,7 @@ isLoggedIn:any;
   }
   
    httpOptions =
-    { headers: new HttpHeaders().set('Authorization',`Bearer ${"eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzYWlkIiwiaWF0IjoxNjgyNTg5NzkxLCJleHAiOjE2ODI2NzYxOTF9.7u-Z9tGIRe26omBAbcLdrGsPK_GMu3wHNTofek-WJeFdMEYdAYT5tJb799cg4Vyh9iOYuIAs_BCOzU9zKx64Vg"}`)};
+    { headers: new HttpHeaders().set('Authorization',`Bearer ${"eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzYWlkIiwiaWF0IjoxNjgyODk1MDk4LCJleHAiOjE2ODI5ODE0OTh9.exmkce7ecAH8Bev6ucWz4sJwhJdQ4qml74mXnF19ig6FQ74yhfuR7FZWL4xvCUy7M6IDA5nHLju4c7zi-A8jXQ"}`)};
    
   
   
