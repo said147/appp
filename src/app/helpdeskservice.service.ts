@@ -39,7 +39,7 @@ isLoggedIn:any;
   }
   
    httpOptions =
-    { headers: new HttpHeaders().set('Authorization',`Bearer ${"eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzYWlkIiwiaWF0IjoxNjgyODk1MDk4LCJleHAiOjE2ODI5ODE0OTh9.exmkce7ecAH8Bev6ucWz4sJwhJdQ4qml74mXnF19ig6FQ74yhfuR7FZWL4xvCUy7M6IDA5nHLju4c7zi-A8jXQ"}`)};
+    { headers: new HttpHeaders().set('Authorization',`Bearer ${"eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzYWlkIiwiaWF0IjoxNjgzMDIwODU0LCJleHAiOjE2ODMxMDcyNTR9.8qsBaZJtMsfZtdksXA3ijHLDuZ16JQR_awEDd-cxB63fWfrED_tERG26KcPEuz2InO5MVQuPOfOpAs6mMlzigQ"}`)};
    
   
   
@@ -98,8 +98,8 @@ isLoggedIn:any;
                      /*  updateProvider(id_demande:any): Observable<any> {
                         return this.Http.get('http://localhost:8082/contacts/'+id_demande, this.httpOptions )}*/
 
-                       updateProviders(id:any) {
-                        return this.Http.put(this.urlProduct,id);
+                       updateProviders(id_demande:any,providerToUpdate:any) {
+                        return this.Http.patch('http://localhost:8082/updateDemande/'+id_demande,providerToUpdate,this.httpOptions);
                            }
 
 

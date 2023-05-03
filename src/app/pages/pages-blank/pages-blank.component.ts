@@ -15,8 +15,9 @@ roles=[];
   ngOnInit(): void {
     this.service. listUser().subscribe(
       response => {
+        
        this.User= response;
-      console.log(this.User.roles)
+      console.log(this.User)
 
       });
   }
