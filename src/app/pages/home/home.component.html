@@ -1,12 +1,97 @@
 <main id="main" class="main">
    <div class="container" *ngIf="currentUser; else loggedOut">
   <header  *ngIf="showUserBoard"  class="jumbotron">
-    <h3>
-
-      Welcome <strong>{{ currentUser.username }}</strong> 
-    </h3>
+   <div>
+      <img style="height: 200px;width: 1100px;" src="https://www.groovypost.com/wp-content/uploads/2021/06/windows-11-teams-featured.jpg">
+   </div>
+   <h1 ></h1>
+   <div class="row">
+      <div class="col-lg-8">
+         <div class="row">
+           
+            <div class="col-xxl-4 col-md-6">
+               <div class="card info-card sales-card">
+                  
+                  <div class="card-body">
+                     <h5 class="card-title">Requests Handover<span></span></h5>
+                     <div class="d-flex align-items-center">
+                        <div class="card-icon rounded-circle d-flex align-items-center justify-content-center"> <i class="bi bi-journal-text"></i></div>
+                        <div class="ps-3">
+                           <h6>{{e}}</h6>
+                           
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div style="position: relative;left: 200px;height: 150px;" class="col-xxl-4 col-md-6">
+               <div class="card info-card revenue-card">
+                
+                  <div class="card-body">
+                     <h5 class="card-title">Requests Change <span></span></h5>
+                     <div class="d-flex align-items-center">
+                        <div class="card-icon rounded-circle d-flex align-items-center justify-content-center"> <i class="bi bi-layout-text-window-reverse"></i></div>
+                        <div class="ps-3">
+                           <h6>{{f}}</h6>
+                          
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div style="position: relative;top: 148px;right: 50px;height: 70px;" class="col-xxl-4 col-md-6">
+              <div class="card info-card customers-card">
+               
+                 <div class="card-body">
+                    <h5 class="card-title">Requests Return  <span> </span></h5>
+                    <div class="d-flex align-items-center">
+                       <div class="card-icon rounded-circle d-flex align-items-center justify-content-center"> <i class="bi bi-menu-button-wide"></i></div>
+                       <div class="ps-3">
+                          <h6>{{r}}</h6>
+                         
+                       </div>
+                    </div>
+                 </div>
+              </div>
+           </div>
+            
+            
+            
+         </div>
+      
+         <div class="col-xxl-4 col-xl-12">
+           <div class="card info-card customers-card">
+             
+              <div class="card-body">
+                 <h5 class="card-title">Request Telework <span></span></h5>
+                 <div class="d-flex align-items-center">
+                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center"> <i class="bi bi-card-heading"></i></div>
+                    <div class="ps-3">
+                       <h6>{{g}}</h6>
+                      
+                    </div>
+                 </div>
+              </div>
+           </div>
+        </div>
+        
+        
+        
+     
+   
+        
+            
+         
+        
+      
+      </div>
+   </div>
   </header>
+  
   <section  *ngIf="showAdminBoard" class="section dashboard">
+   <div>
+      <img style="height: 200px;width: 1100px;" src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTZ8fGNvbXB1dGVyJTIwdXNlcnxlbnwwfHwwfHw%3D&w=1000&q=80">
+   </div>
     <div class="row">
        <div class="col-lg-8">
           <div class="row">

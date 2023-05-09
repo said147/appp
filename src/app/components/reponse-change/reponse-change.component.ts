@@ -4,12 +4,12 @@ import { TokenStorageService } from 'src/app/_services/token-storage-service';
 import { HelpdeskserviceService } from 'src/app/helpdeskservice.service';
 
 @Component({
-  selector: 'app-reponse-voucher',
-  templateUrl: './reponse-voucher.component.html',
-  styleUrls: ['./reponse-voucher.component.css']
+  selector: 'app-reponse-change',
+  templateUrl: './reponse-change.component.html',
+  styleUrls: ['./reponse-change.component.css']
 })
-export class ReponseVoucherComponent implements OnInit {
-  btnDisabled:boolean = false;
+export class ReponseChangeComponent implements OnInit {
+  status:string="";
   p:number=1;
   itemPerPage:number=5;
   demandes:any;
@@ -19,9 +19,8 @@ export class ReponseVoucherComponent implements OnInit {
    
     prenom?: any;
     departement?: any;
-    status:string="";
-  constructor(private service: HelpdeskserviceService,private tokenStorageService: TokenStorageService, private router: Router  ) { }
-  
+  constructor(private service: HelpdeskserviceService,private tokenStorageService: TokenStorageService, private router: Router) { }
+
   ngOnInit(): void {
     this.isLoggedIn = !!this.tokenStorageService.getToken();
     if (this.isLoggedIn) {
@@ -37,7 +36,7 @@ export class ReponseVoucherComponent implements OnInit {
       
       
     }
-    this.service.repDemandeRetourVoucher(this.id).subscribe(
+    this.service.repDemandeChange(this.id).subscribe(
       response => {
         this.demandes= response;
        console.log( this.demandes)

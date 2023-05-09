@@ -14,6 +14,10 @@ export class HomeComponent implements OnInit {
   b:any;
   c:any;
   d:any;
+  e:any;
+  f:any;
+  g:any;
+  r:any;
   private roles: string[] = [];
   response: number | undefined;
   isLoggedIn = false;
@@ -41,13 +45,38 @@ export class HomeComponent implements OnInit {
     console.log(this.currentUser.roles)
     console.log(this.currentUser.token)
     
+
+    
+    this.service.CountChange(this.currentUser.id).subscribe(
+      response => {
+     this.f=response
+       console.log( this.response)
+      } );
+
+      this.service.CountTelework(this.currentUser.id).subscribe(
+        response => {
+       this.g=response
+         console.log( this.response)
+        } );
+        this.service. CountReturn(this.currentUser.id).subscribe(
+          response => {
+         this.r=response
+           console.log( this.response)
+          } );
+       
+
+
      this.service.CountRequests().subscribe(
       response => {
      this.a=response
        console.log( this.response)
       } );
 
-      
+      this.service.Count(this.currentUser.id).subscribe(
+        response => {
+       this.e=response
+         console.log( this.response)
+        } );
 
       this.service.CountRequestClosed().subscribe(
         response => {

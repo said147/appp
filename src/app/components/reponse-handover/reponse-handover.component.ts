@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HelpdeskserviceService } from 'src/app/helpdeskservice.service';
 import { SharedService } from 'src/app/SharedService';
 import { TokenStorageService } from 'src/app/_services/token-storage-service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-reponse-handover',
@@ -15,6 +16,7 @@ export class ReponseHandoverComponent implements OnInit {
     prenom?: any;
     departement?: any;
     demandes:any;
+    demande:any;
     btnDisabled:boolean = false;
     p:number=1;
     itemPerPage:number=5;
@@ -24,9 +26,10 @@ export class ReponseHandoverComponent implements OnInit {
     currentPage:number=0;
     size:number=8;
     content:any;
+    a:any;
     pages:Array<number> | undefined;
-  constructor(private service: HelpdeskserviceService,private sharedService: SharedService,private tokenStorageService: TokenStorageService) { }
-a=this.sharedService.data;
+  constructor(private service: HelpdeskserviceService,private sharedService: SharedService,private tokenStorageService: TokenStorageService, private router: Router) { }
+
   ngOnInit(): void {
     
     this.isLoggedIn = !!this.tokenStorageService.getToken();
@@ -46,7 +49,11 @@ a=this.sharedService.data;
     this.service.rep(this.id).subscribe(
       response => {
         this.demandes= response;
-       console.log( this.demandes)
+        this.demande=this.demandes.sort(function(a: { id_demande: any; },b: { id_demande: any; }){
+
+          return b.id_demande-a.id_demande;
+        })
+       console.log( this.demande)
       
      
       
@@ -58,6 +65,12 @@ a=this.sharedService.data;
       );
     console.log(this.id)
     
+  }
+  filterD(){
+    this.demandes=this.demandes.sort(function(a: { id_demande: any; },b: { id_demande: any; }){
+
+      return b.id_demande=a.id_demande;
+    })
   }
   Ondeleted( id_demande:any){
    
@@ -99,4 +112,12 @@ a=this.sharedService.data;
 this.doSearch();
   }
 
+  cancal(){
+    this.reloadPage();
+  }
+  reloadPage(): void {
+    window.location.reload();
+    this.router.navigateByUrl('/reponse-handover');
+  }
 }
+

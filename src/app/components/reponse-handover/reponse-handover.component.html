@@ -21,13 +21,14 @@
                      <input class="searchTerm" type="text"[(ngModel)]="status" 
                     />
                     <button class="bi bi-search" (click)="chercher()"></button>
+                    <button class="bi bi-x"(click)="cancal()"></button>
                   
                    </div>
                     <table class="table table-sm">
                        <thead>
                           <tr>
                             
-                             
+                           
                              <th scope="col">Date of request</th>
                              
                              <th scope="col">Status</th>
@@ -36,7 +37,7 @@
                           </tr>
                        </thead>
                        <tbody>
-                          <tr *ngFor=" let k of demandes | paginate: { itemsPerPage: itemPerPage, currentPage: p }   ">
+                          <tr *ngFor=" let k of demande | paginate: { itemsPerPage: itemPerPage, currentPage: p }   ">
                             
                            
                              <td>{{k.date}}</td>

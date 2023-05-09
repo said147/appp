@@ -48,6 +48,10 @@ import { Ng2SearchPipe } from 'ng2-search-filter';
 import { SearchPipe } from './search.pipe';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { DetailsReturnComponent } from './components/details-return/details-return.component';
+import { EditReturnComponent } from './components/edit-return/edit-return.component';
+import { EditTeleworkComponent } from './components/edit-telework/edit-telework.component';
+import { ReponseChangeComponent } from './components/reponse-change/reponse-change.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -84,7 +88,11 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     RequestHandoverComponent,
     RequestChangeComponent,
     EditHandoverComponent,
-    SearchPipe
+    SearchPipe,
+    DetailsReturnComponent,
+    EditReturnComponent,
+    EditTeleworkComponent,
+    ReponseChangeComponent
   ],
   imports: [
     BrowserModule,ReactiveFormsModule,

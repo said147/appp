@@ -38,6 +38,13 @@ import { RequestChangeComponent } from './components/request-change/request-chan
 
 import { EditHandoverComponent } from './components/edit-handover/edit-handover.component';
 import { ReactiveFormsModule } from '@angular/forms';
+
+import { DetailsReturnComponent } from './components/details-return/details-return.component';
+
+import { EditReturnComponent } from './components/edit-return/edit-return.component';
+import { EditTeleworkComponent } from './components/edit-telework/edit-telework.component';
+
+import { ReponseChangeComponent } from './components/reponse-change/reponse-change.component';
 const routes: Routes = [
   { path: '', component: PagesLoginComponent },
   
@@ -70,7 +77,11 @@ const routes: Routes = [
   { path: 'reponse-voucher', component: ReponseVoucherComponent },
 
   { path: 'request-change', component: RequestChangeComponent },
+  { path: 'reponse-change', component: ReponseChangeComponent },
 
+  { path: 'requests/detailsReturn/:id_demandeRetour', component: DetailsReturnComponent },
+  { path: 'reponse-voucher/edit-return/:id_demandeRetour', component: EditReturnComponent },
+  { path: 'reponse-telework/edit-telework/:id_demandeTelework', component: EditTeleworkComponent },
   
 ];
 

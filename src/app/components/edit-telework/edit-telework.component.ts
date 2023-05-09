@@ -1,33 +1,52 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { TokenStorageService } from 'src/app/_services/token-storage-service';
 import { HelpdeskserviceService } from 'src/app/helpdeskservice.service';
 
 @Component({
-  selector: 'app-request-telework',
-  templateUrl: './request-telework.component.html',
-  styleUrls: ['./request-telework.component.css']
+  selector: 'app-edit-telework',
+  templateUrl: './edit-telework.component.html',
+  styleUrls: ['./edit-telework.component.css']
 })
-export class RequestTeleworkComponent implements OnInit {
-  username?: string;
-  id?: any;
-  prenom?: any;
-  departement?: any;
+export class EditTeleworkComponent implements OnInit {
+  id:any;
+  demandes:any;
   isLoggedIn = false;
-  constructor(private builder: FormBuilder,private service: HelpdeskserviceService,private tokenStorageService: TokenStorageService) { }
+  constructor(private builder: FormBuilder,private tokenStorageService: TokenStorageService,private service: HelpdeskserviceService, private router: Router,private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.isLoggedIn = !!this.tokenStorageService.getToken();
+    this.route.paramMap.subscribe(
+      params => {
+      this.id = params.get('id_demandeTelework'); 
+      console.log("cc")
+      console.log( this.id);
+   
+      }
+      );
+      this.service.getDemandeTelework(this.id).subscribe(
+        response => {
+        this.demandes= response;
+      console.log( this.demandes);
 
-    if (this.isLoggedIn) {
-      const user = this.tokenStorageService.getUser();
-      this.username = user.username;
-      this.id=user.id;
-      this.prenom=user.prenom;
-      this.departement=user.departement; 
-    }
-    const name = new Date();
-    console.log(name)
+      if (this.demandes.variants != null) {
+        for (let i = 0; i < this.demandes.materielTelework.length; i++) {
+          this.addRow();
+        }
+        }
+
+
+         this.productform.patchValue({
+           date: this.demandes.date,
+           adresse: this.demandes.adresse,
+           materielTelework: this.demandes.materielTelework
+
+         })
+    });
+
+    
+
+
   }
   formvariant !: FormArray<any>;
   productform = this.builder.group({
@@ -38,22 +57,22 @@ export class RequestTeleworkComponent implements OnInit {
     category: this.builder.control(''),*/
     materielTelework: this.builder.array([])
   });
-  addDemandeTelework(){
+  updateDemandeTelework(){
+   
     if (this.tokenStorageService.getToken()) {
       this.isLoggedIn = true;
       const user = this.tokenStorageService.getUser();
    
-    console.log(this.productform.value);
-    
-   this.service.saveDemandeTelework(this.productform.value).subscribe((result)=>{
-    console.warn(result);
-  })
-  }
-
-
-
-
-
+      
+      
+     this.service.updateDemandeTelework(this.id, this.productform.value).subscribe(
+      response => {
+      
+      console.log(response);
+      
+      }
+      );
+    }
   }
   
 
@@ -80,4 +99,6 @@ export class RequestTeleworkComponent implements OnInit {
   get materiels() {
     return this.productform.get("materielTelework") as FormArray;
   }
+  
+
 }

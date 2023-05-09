@@ -1,4 +1,4 @@
-import { Component, OnInit,ViewChild } from '@angular/core';
+import { Component, Input, OnInit,ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, NgForm ,FormArray, FormControl, Validators} from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HelpdeskserviceService } from 'src/app/helpdeskservice.service';
@@ -35,7 +35,7 @@ export class RequestHandoverComponent implements OnInit {
     isData : boolean = false;
     dataform:any;
     
-
+    @Input() equ: any[];
    
 
 
@@ -43,7 +43,7 @@ export class RequestHandoverComponent implements OnInit {
  
   constructor(private builder: FormBuilder,private service: HelpdeskserviceService, private router: Router,private route: ActivatedRoute,private tokenStorageService: TokenStorageService) 
   { 
-  
+   this.equ=['C.U','Scrrean'];
   }
 
   ngOnInit(): void {

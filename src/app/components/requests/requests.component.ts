@@ -14,6 +14,8 @@ export interface userr{
 })
 export class RequestsComponent implements OnInit {
   demande:any;
+  demandeRetour:any;
+  demandeAll:any;
   demandes: any[]=[];
 item:any;
  
@@ -34,6 +36,7 @@ item:any;
   itemPerPage:number=8;
   totaldemande:any;
   username:string="";
+  demandess:any
   pages:Array<number> | undefined;
   constructor(private service: HelpdeskserviceService, private router: Router) { }
 
@@ -45,11 +48,26 @@ item:any;
       this.demande= response;
       this.pages=new Array(this.demande.totalPages);
       this.totaldemande=this.demande.length
+      this.demandess=this.demande.sort(function(a: { id_demande: any; },b: { id_demande: any; }){
+
+        return b.id_demande-a.id_demande;
+      })
       this.demandes.push( response);
       console.log(this.demande);
      }
      
      );
+     
+     this.service.listDemandeRetourVoucher().subscribe(
+      response => {
+      this.demandeRetour= response;
+    
+  
+      console.log(this.demandeRetour);
+     }
+     
+     );
+     
     } 
         
         /*for(let item of this.demande){
