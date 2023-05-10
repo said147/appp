@@ -3,47 +3,61 @@ import { FormArray, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TokenStorageService } from 'src/app/_services/token-storage-service';
 import { HelpdeskserviceService } from 'src/app/helpdeskservice.service';
-import { Materiel } from 'src/app/models/materiel';
 
 @Component({
-  selector: 'app-request-change',
-  templateUrl: './request-change.component.html',
-  styleUrls: ['./request-change.component.css']
+  selector: 'app-edit-change',
+  templateUrl: './edit-change.component.html',
+  styleUrls: ['./edit-change.component.css']
 })
-export class RequestChangeComponent implements OnInit {
+export class EditChangeComponent implements OnInit {
+  id:any;
   demandes:any;
-    materiels: Materiel[]=[];
-    employe:any;
-    dynamicArray :any= [];
-  
-    isLoggedIn = false;
-    showAdminBoard = false;
-    showModeratorBoard = false;
-    username?: string;
-    id?: any;
-    prenom?: any;
-    departement?: any;
+  providerToUpdate:any
+  isLoggedIn = false;
   constructor(private builder: FormBuilder,private service: HelpdeskserviceService, private router: Router,private route: ActivatedRoute,private tokenStorageService: TokenStorageService) { }
 
   ngOnInit(): void {
-    this.isLoggedIn = !!this.tokenStorageService.getToken();
+    this.route.paramMap.subscribe(
+      params => {
+      this.id = params.get('id_demandeChange'); 
+      console.log("cc")
+      console.log( this.id);
+      this.service.getDemandeChange(this.id).subscribe(
+        response => {
+        this.demandes= response;
+      console.log( this.demandes);
+    /*  this.service.getMateriel(this.id).subscribe(
+        response => {
+        this.Materiel= response;
+         
+         console.log(this.Materiel);
+        }
+        );*/
 
-    if (this.isLoggedIn) {
-      const user = this.tokenStorageService.getUser();
-    
+      if (this.demandes.variants != null) {
+        for (let i = 0; i < this.demandes.materielChangeAncient.length; i++) {
+          this.addRow1();
+        }
+        }
+        if (this.demandes.variants != null) {
+          for (let i = 0; i < this.demandes.materielChangeNew.length; i++) {
+            this.addRow2();
+          }
+          }
 
-      
 
-      this.username = user.username;
-      this.id=user.id;
-      this.prenom=user.prenom;
-      this.departement=user.departement;
-      
+         this.productform.patchValue({
+           date: this.demandes.date,
+           
+           materielChangeNew: this.demandes.materielChangeNew,
+           materielChangeAncient: this.demandes.materielChangeAncient
+
+         })
+      });
+      }
+      );
   }
-  
-}
-
-formvariant !: FormArray<any>;
+  formvariant !: FormArray<any>;
 productform = this.builder.group({
   date: this.builder.control('', Validators.required),
  
@@ -121,4 +135,23 @@ get materiels1() {
 get materiels2() {
   return this.productform.get("materielChangeNew") as FormArray;
 }
+
+updateProvider(){
+   
+  if (this.tokenStorageService.getToken()) {
+    this.isLoggedIn = true;
+    const user = this.tokenStorageService.getUser();
+ 
+    
+    
+   this.service.updateDemandeChange(this.id, this.productform.value).subscribe(
+    response => {
+    
+    console.log(response);
+    
+    }
+    );  
+  }
+}
+
 }

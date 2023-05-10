@@ -17,30 +17,30 @@
                     <div> <img style="width: 290px;position: relative;margin-left: 590px;" src="assets/img/Image2.png" alt=""></div>
                    <h5 style="text-align: center;font-family:Verdana;font-weight: 700;font-size: 24px;color: rgb(79,129,183);" class="card-title">ASSET CHANGE FORM</h5>
                    <p style="font-family: Arial;font-size: 13px;color: #000;">ATC entrusts to Mr/Mrs</p>
-                   <form  [formGroup]="productform" (ngSubmit)="addDemandeChange()">
+                   <form  [formGroup]="productform" (ngSubmit)="updateProvider()">
                       <div class="row mb-3">
                          <label 
 
                          style="font-family: Arial;font-size: 13px;" for="inputText" class="col-sm-2 col-form-label">Name:
-                         <label style="font-family: Arial;font-size: 13px;position: relative;left: 110px;" class="col-sm-14"> {{username}}</label></label>
+                         <label style="font-family: Arial;font-size: 13px;position: relative;left: 110px;" class="col-sm-14"> {{demandes?.user.username}}</label></label>
                       </div>
 
                    
 
                       <div class="row mb-3">
                          <label style="font-family: Arial;font-size: 13px;" for="inputEmail" class="col-sm-2 col-form-label">Surname:
-                         <label  style="font-family: Arial;font-size: 13px;position: relative; left: 90px;" class="col-sm-14"> {{prenom}}</label></label>
+                         <label  style="font-family: Arial;font-size: 13px;position: relative; left: 90px;" class="col-sm-14"> {{demandes?.user.prenom}}</label></label>
                       </div>
                       <div style="font-family: Arial;font-size: 13px;" class="row mb-3">
                         <label 
 
                         style="font-family: Arial;font-size: 13px;" for="inputText" class="col-sm-10 col-form-label">Department :
-                        <label  name="nom" style="font-family: Arial;font-size: 13px;position: relative;left: 65px;" class="col-sm-14">{{departement}}</label></label>
+                        <label  name="nom" style="font-family: Arial;font-size: 13px;position: relative;left: 65px;" class="col-sm-14">{{demandes?.user.departement}}</label></label>
                      </div>
                      
                       <div class="row mb-3">
                          <label style="font-family: Arial;font-size: 13px;" for="inputDate" class="col-sm-2 col-form-label">Change date</label>
-                         <div class="col-sm-10"> <input style="font-family: Arial;font-size: 13px;width: 180px;" name="Date" formControlName="date"  type="date" class="form-control"></div>
+                         <div class="col-sm-10" style="font-family: Arial;font-size: 13px;" formControlName="date">  {{demandes?.date}}</div>
                       </div>
                      
                     
@@ -144,7 +144,7 @@
                      
             <p style="font-family: Arial;font-size: 13px;color: #000;padding-left: 30px;">This asset remains the property of the company.</p>
             <div><label style="font-size: 13px;font-family:Arial;padding-left: 30px;" for="validationCustom01" class="form-label">It is agreed that Mr/Mrs
-                <label style="position: relative;left: 9px;font-weight: 700;font-size: 13px;font-family:Arial;" for="validationCustom02" class="form-label"> {{username}}  {{prenom}}</label>
+                <label style="position: relative;left: 9px;font-weight: 700;font-size: 13px;font-family:Arial;" for="validationCustom02" class="form-label"> {{demandes?.user.username}}  {{demandes?.user.prenom}}</label>
                 <label style="position: relative;left: 39px; font-family:Arial;font-size: 13px">
                 shall not use this asset for any other purposes than
                 </label>
@@ -152,7 +152,7 @@
                 <p style="font-family: Arial;font-size: 13px;color: #000;padding-left: 30px;">professional purposes without the express and prior authorization of the company.</p>
                    
                 <div><label style="font-size: 13px;font-family:Arial;padding-left: 30px;padding-top: 25px;" for="validationCustom01" class="form-label">Mr/Mrs
-                    <label style="position: relative;left: 9px;font-weight: 700;font-size: 13px;font-family:Arial;" for="validationCustom02" class="form-label"> {{username}}  {{prenom}}</label>
+                    <label style="position: relative;left: 9px;font-weight: 700;font-size: 13px;font-family:Arial;" for="validationCustom02" class="form-label"> {{demandes?.user.username}}  {{demandes?.user.prenom}}</label>
                     <label style="position: relative;left: 39px; font-family:Arial;font-size: 13px">
                       is committed to return the integrality of the said entrusted asset at the time of his departure of
                     </label>
@@ -161,7 +161,7 @@
                 
                 
                     <div><label style="font-size: 13px;font-family:Arial;padding-left: 30px;padding-top: 25px;" for="validationCustom01" class="form-label">It is stated that in case of damage or loss to the said loaned asset, Mr/Mrs
-                        <label style="position: relative;left: 9px;font-weight: 700;font-size: 13px;font-family:Arial;" for="validationCustom02" class="form-label"> {{username}}  {{prenom}}</label>
+                        <label style="position: relative;left: 9px;font-weight: 700;font-size: 13px;font-family:Arial;" for="validationCustom02" class="form-label"> {{demandes?.user.username}}  {{demandes?.user.prenom}}</label>
                         <label style="position: relative;left: 39px; font-family:Arial;font-size: 13px">
                            may be required to
                         </label>

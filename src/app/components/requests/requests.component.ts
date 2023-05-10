@@ -38,6 +38,8 @@ item:any;
   username:string="";
   demandess:any
   pages:Array<number> | undefined;
+  demandeTelework:any
+  demandeChange:any;
   constructor(private service: HelpdeskserviceService, private router: Router) { }
 
   ngOnInit(): void {
@@ -64,6 +66,24 @@ item:any;
     
   
       console.log(this.demandeRetour);
+     }
+     
+     );
+     this.service.listDemandeTelework().subscribe(
+      response => {
+      this.demandeTelework= response;
+    
+  
+      console.log(this.demandeTelework);
+     }
+     
+     );
+     this.service.listDemandeChange().subscribe(
+      response => {
+      this.demandeChange= response;
+    
+  
+      console.log(this.demandeChange);
      }
      
      );
@@ -150,7 +170,17 @@ item:any;
         }
         );*/
 
-
+        send(){
+          this.service.Sendemail().subscribe(
+            response => {
+           
+          
+        
+            console.log("ok");
+           }
+           
+           );
+        }
 
   
   doSearch() {

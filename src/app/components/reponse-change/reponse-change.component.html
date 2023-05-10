@@ -1,11 +1,12 @@
 <main id="main" class="main">
     <div class="pagetitle">
-       <h1>Form Editors</h1>
+       <h1>Responses</h1>
        <nav>
           <ol class="breadcrumb">
              <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
-             <li class="breadcrumb-item">Forms</li>
-             <li class="breadcrumb-item active">Editors</li>
+             <li class="breadcrumb-item">
+                ASSET CHANGE FORM</li>
+             <li class="breadcrumb-item active">Responses</li>
           </ol>
        </nav>
     </div>
@@ -42,7 +43,7 @@
                            <td>{{k.date}}</td>
                         
                            <td>{{k.status}}</td>
-                        <td><button  [disabled]="k.status !== 'Waiting'"  routerLink="edit-telework/{{ k.id_demandeTelework}}" class="btn btn-primary">edit</button></td>
+                        <td><button  [disabled]="k.status !== 'Waiting'"  routerLink="edit-change/{{ k.id_demandeChange}}" class="btn btn-primary">edit</button></td>
                         <td><button  [disabled]="k.status !== 'Waiting'" class="btn btn-primary" >Delete</button></td>
                         </tr>
                        

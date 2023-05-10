@@ -3,49 +3,32 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { HelpdeskserviceService } from 'src/app/helpdeskservice.service';
 
 @Component({
-  selector: 'app-details-return',
-  templateUrl: './details-return.component.html',
-  styleUrls: ['./details-return.component.css']
+  selector: 'app-details-telework',
+  templateUrl: './details-telework.component.html',
+  styleUrls: ['./details-telework.component.css']
 })
-export class DetailsReturnComponent implements OnInit {
+export class DetailsTeleworkComponent implements OnInit {
   id:any;
   demandes:any;
-  dfd:any[]=[];
-  d:any;
   providerToUpdate:any;
   constructor(private service: HelpdeskserviceService, private router: Router,private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(
       params => {
-      this.id = params.get('id_demandeRetour'); 
+      this.id = params.get('id_demandeTelework'); 
       console.log("cc")
       console.log( this.id);
    
       }
       );
-      
-      
-      this.service.getDemandeRetourVoucher(this.id).subscribe(
+      this.service.getDemandeTelework(this.id).subscribe(
         response => {
         this.demandes= response;
          console.log(this.demandes);
          
         }
         );
-       /* this.service.getMaterielRetourVoucher(this.id).subscribe(
-          response => {
-          this.Materiel= response;
-           
-           console.log(this.Materiel);
-          }
-          );*/
-       /* this.service. listmat(this.id).subscribe(
-          response => {
-          this.demandes= response;
-          
-          }
-          );*/
        
   }
   updateProvider() {
@@ -57,7 +40,7 @@ export class DetailsReturnComponent implements OnInit {
   
     console.log(this.providerToUpdate)
     console.log("1");
-   this.service.updateRetour(this.id, this.providerToUpdate).subscribe(
+   this.service.updateTelework(this.id, this.providerToUpdate).subscribe(
     response => {
     
     console.log(response);
@@ -77,7 +60,7 @@ updatestatus() {
 
   console.log(this.providerToUpdate)
   console.log("1");
- this.service.updateRetourStatus(this.id, this.providerToUpdate).subscribe(
+ this.service.updateTeleworkStatus(this.id, this.providerToUpdate).subscribe(
   response => {
   
   console.log(response);

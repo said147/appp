@@ -38,11 +38,11 @@
                    </div>
                    <div  class="row">
                       <div class="col-lg-3 col-md-4 label">Return date</div>
-                      <div class="col-lg-9 col-md-8">{{demandes?.date_retour}}</div>
+                      <div class="col-lg-9 col-md-8">{{demandes?.date}}</div>
                    </div>
                    <div class="row">
-                      <div class="col-lg-3 col-md-4 label">Reason for returning</div>
-                      <div class="col-lg-9 col-md-8">{{demandes?.reason}}</div>
+                      <div class="col-lg-3 col-md-4 label">adresse</div>
+                      <div class="col-lg-9 col-md-8">{{demandes?.adresse}}</div>
                    </div>
                    <p>The Following asset :</p>
                    <div class="card-body">
@@ -57,27 +57,23 @@
                                </th>
                              <th scope="col">SERVICE TAG / SERIAL
                                 NUMBER (S/N)</th>
-                                <th scope="col">Low level</th>
-                                
-                             <th scope="col">Comments</th>
-                          </tr>
+                             <
                        </thead>
                        <tbody>
                          
-                          <tr  *ngFor="let n of demandes?.materielRetour">
-                             
+                          <tr  *ngFor="let n of demandes?.materielTelework">
+                            
                              <td>{{n?.equipement}}</td>
                              <td>{{n?.model}}</td>
                              <td>{{n?.serial}}</td>
-                             <td>{{n?.level}}</td>
-                             <td>{{n?.comment}}</td>
+                             
                           </tr>
                           
                           
                        </tbody>
                     </table>
                   </div>
-                  <div class="modal-footer">  <button  [disabled]="demandes.status == 'En cours'||demandes?.status=='Closed'" type="button"  class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#verticalycentered"> En cours</button> <button [disabled]="demandes.status == 'Waiting'||demandes.status=='Closed'"  type="button" class="btn btn-primary"data-bs-toggle="modal" data-bs-target="#verticalycentereds"> Close</button></div>
+                  <div class="modal-footer">  <button [disabled]="demandes.status == 'En cours'||demandes?.status=='Closed'" type="button" type="button"  class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#verticalycentered"> En cours</button> <button [disabled]="demandes.status == 'Waiting'||demandes.status=='Closed'" type="button" class="btn btn-primary"data-bs-toggle="modal" data-bs-target="#verticalycentereds"> Close</button></div>
                   
                   <div class="modal fade" id="verticalycentered" tabindex="-1">
                      <div class="modal-dialog modal-dialog-centered">

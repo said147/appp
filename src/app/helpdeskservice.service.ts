@@ -39,7 +39,7 @@ isLoggedIn:any;
   }
   
    httpOptions =
-    { headers: new HttpHeaders().set('Authorization',`Bearer ${"eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzYWlkIiwiaWF0IjoxNjgzNTg1NjM3LCJleHAiOjE2ODM2NzIwMzd9.GfdYQejt8WcDi2o9SH7QgV0h5UDBrHYyjH-F18kpiBgVHB09exi9cZHmruozJebFG9jJIVPwNCNe6rQAsxVDXw"}`)};
+    { headers: new HttpHeaders().set('Authorization',`Bearer ${"eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzYWlkIiwiaWF0IjoxNjgzNjcyMDgyLCJleHAiOjE2ODM3NTg0ODJ9.bVOWA_X2afS5T4I3iEgFUYZtPayk0_-IshexjtkRrlS-OljMXcQzmQRLjaPlGF9l5XLiFzNiNphJLWcpDAe-8Q"}`)};
    
   
   
@@ -176,7 +176,13 @@ isLoggedIn:any;
                        getDemandeRetourVoucher(id_demandeRetour:any) {
                                     return this.Http.get('http://localhost:8082/demaneRetour/'+id_demandeRetour,id_demandeRetour)
                                        }
-
+                                       
+                                       updateRetour(id_demandeRetour:any,providerToUpdate:any) {
+                                        return this.Http.patch('http://localhost:8082/changeDemandeRetour/'+id_demandeRetour,providerToUpdate,this.httpOptions);
+                                           }
+                                           updateRetourStatus(id_demandeRetour:any,providerToUpdate:any) {
+                                            return this.Http.patch('http://localhost:8082/changestatusRetour/'+id_demandeRetour,providerToUpdate,this.httpOptions);
+                                               }
 
                                          //DemandeTelework
                                          saveDemandeTelework(data:any) {
@@ -184,6 +190,10 @@ isLoggedIn:any;
                                           return this.Http.post('http://localhost:8082/addDemandeTelework',data,this.httpOptions);
                                               
                                         }
+                                        //
+                                        listDemandeTelework() {
+                                          return this.Http.get('http://localhost:8082/demandeTelework',this.httpOptions);
+                                               }
                                          repDemandeTelework(id:any) {
                                           return this.Http.get('http://localhost:8082/demandesTelework/'+id,this.httpOptions);
                                           
@@ -194,6 +204,13 @@ isLoggedIn:any;
                                                    updateDemandeTelework(id_demandeTelework:any,providerToUpdate:any) {
                                                     return this.Http.patch('http://localhost:8082/updateDemandeTelework/'+id_demandeTelework,providerToUpdate,this.httpOptions);
                                                        }
+                                                     
+                                                       updateTelework(id_demandeTelework:any,providerToUpdate:any) {
+                                                        return this.Http.patch('http://localhost:8082/changeDemandeTelework/'+id_demandeTelework,providerToUpdate,this.httpOptions);
+                                                           }
+                                                           updateTeleworkStatus(id_demandeTelework:any,providerToUpdate:any) {
+                                                            return this.Http.patch('http://localhost:8082/changestatusTelework/'+id_demandeTelework,providerToUpdate,this.httpOptions);
+                                                               }
 
                       //DemandeChange
                       saveDemandeChange(data:any) {
@@ -201,6 +218,10 @@ isLoggedIn:any;
                         return this.Http.post('http://localhost:8082/addDemandeChange',data,this.httpOptions);
                             
                       }
+                      //
+                      listDemandeChange() {
+                        return this.Http.get('http://localhost:8082/demandeChange',this.httpOptions);
+                             }
                        repDemandeChange(id:any) {
                         return this.Http.get('http://localhost:8082/demandesChange/'+id,this.httpOptions);
                         
@@ -211,5 +232,20 @@ isLoggedIn:any;
                                  updateDemandeChange(id_demandeChange:any,providerToUpdate:any) {
                                   return this.Http.patch('http://localhost:8082/updateDemandeChange/'+id_demandeChange,providerToUpdate,this.httpOptions);
                                      }
+
+                                     updateChange(id_demandeChange:any,providerToUpdate:any) {
+                                      return this.Http.patch('http://localhost:8082/changeDemandeChange/'+id_demandeChange,providerToUpdate,this.httpOptions);
+                                         }
+                                         updateChangeStatus(id_demandeChange:any,providerToUpdate:any) {
+                                          return this.Http.patch('http://localhost:8082/changestatusChange/'+id_demandeChange,providerToUpdate,this.httpOptions);
+                                             }
+
+
+                        
+                                     
+            Sendemail() {
+                        return this.Http.post('http://localhost:8082/api/email',this.httpOptions);
+                        }
+                                     
 
 }

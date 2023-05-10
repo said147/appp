@@ -43,6 +43,7 @@
                     />
                     <button class="bi bi-search"(click)="chercher()"></button>
                     <button class="bi bi-x"(click)="cancal()"></button>
+                   
                    </div>
                    
                   <table class="table table-sm">
@@ -80,6 +81,28 @@
                            <td>{{k.date_retour}}</td>
                            <td  >{{k.status}}</td>
                            <td  > <p class="card-text"><a   routerLink="detailsReturn/{{ k.id_demandeRetour}}"  class="btn btn-primary" >Details</a></p></td>
+                           
+                         
+                        </tr>
+                        <tr  *ngFor=" let k of demandeTelework   ">
+                          
+                           <td   >{{k.user.username}}</td>
+                           <td >{{k.user.departement}}</td>
+                           <td>{{k.type_Demande}}</td>
+                           <td>{{k.date}}</td>
+                           <td  >{{k.status}}</td>
+                           <td  > <p class="card-text"><a   routerLink="detailsTelework/{{ k.id_demandeTelework}}"  class="btn btn-primary" >Details</a></p></td>
+                           
+                         
+                        </tr>
+                        <tr  *ngFor=" let k of demandeChange   ">
+                          
+                           <td   >{{k.user.username}}</td>
+                           <td >{{k.user.departement}}</td>
+                           <td>{{k.type_Demande}}</td>
+                           <td>{{k.date}}</td>
+                           <td  >{{k.status}}</td>
+                           <td  > <p class="card-text"><a   routerLink="detailsChange/{{ k.id_demandeChange}}"  class="btn btn-primary" >Details</a></p></td>
                            
                          
                         </tr>

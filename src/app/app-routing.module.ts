@@ -45,6 +45,11 @@ import { EditReturnComponent } from './components/edit-return/edit-return.compon
 import { EditTeleworkComponent } from './components/edit-telework/edit-telework.component';
 
 import { ReponseChangeComponent } from './components/reponse-change/reponse-change.component';
+
+import { EditChangeComponent } from './components/edit-change/edit-change.component';
+
+import { DetailsTeleworkComponent } from './components/details-telework/details-telework.component';
+import { DetailsChangeComponent } from './components/details-change/details-change.component';
 const routes: Routes = [
   { path: '', component: PagesLoginComponent },
   
@@ -80,8 +85,14 @@ const routes: Routes = [
   { path: 'reponse-change', component: ReponseChangeComponent },
 
   { path: 'requests/detailsReturn/:id_demandeRetour', component: DetailsReturnComponent },
+  { path: 'requests/detailsTelework/:id_demandeTelework', component: DetailsTeleworkComponent },
+  { path: 'requests/detailsChange/:id_demandeChange', component: DetailsChangeComponent },
+
   { path: 'reponse-voucher/edit-return/:id_demandeRetour', component: EditReturnComponent },
   { path: 'reponse-telework/edit-telework/:id_demandeTelework', component: EditTeleworkComponent },
+  { path: 'reponse-change/edit-change/:id_demandeChange', component: EditChangeComponent },
+
+  
   
 ];
 

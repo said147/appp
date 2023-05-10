@@ -52,6 +52,9 @@ import { DetailsReturnComponent } from './components/details-return/details-retu
 import { EditReturnComponent } from './components/edit-return/edit-return.component';
 import { EditTeleworkComponent } from './components/edit-telework/edit-telework.component';
 import { ReponseChangeComponent } from './components/reponse-change/reponse-change.component';
+import { EditChangeComponent } from './components/edit-change/edit-change.component';
+import { DetailsTeleworkComponent } from './components/details-telework/details-telework.component';
+import { DetailsChangeComponent } from './components/details-change/details-change.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -92,7 +95,10 @@ import { ReponseChangeComponent } from './components/reponse-change/reponse-chan
     DetailsReturnComponent,
     EditReturnComponent,
     EditTeleworkComponent,
-    ReponseChangeComponent
+    ReponseChangeComponent,
+    EditChangeComponent,
+    DetailsTeleworkComponent,
+    DetailsChangeComponent
   ],
   imports: [
     BrowserModule,ReactiveFormsModule,
